@@ -1,0 +1,68 @@
+{
+    "name": "workerman/webman",
+    "type": "library",
+    "keywords": [
+        "high performance",
+        "http service"
+    ],
+    "homepage": "http://www.workerman.net",
+    "license": "MIT",
+    "description": "High performance HTTP Service Framework.",
+    "authors": [
+        {
+            "name": "walkor",
+            "email": "walkor@workerman.net",
+            "homepage": "http://www.workerman.net",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "walkor@workerman.net",
+        "issues": "https://github.com/walkor/webman/issues",
+        "forum": "http://wenda.workerman.net/",
+        "wiki": "http://workerman.net/doc/webman",
+        "source": "https://github.com/walkor/webman"
+    },
+    "require": {
+        "php": ">=7.4",
+        "workerman/webman-framework": "^1.0",
+        "monolog/monolog": "^2.0",
+        "vlucas/phpdotenv": ">=4.1,<6.0",
+        "illuminate/database": "^8.28",
+        "jenssegers/mongodb": "^3.8",
+        "illuminate/redis": "^8.28",
+        "firebase/php-jwt": "^5.2",
+        "symfony/translation": "^5.2",
+        "phpmailer/phpmailer": "^6.3"
+    },
+    "suggest": {
+        "ext-event": "For better performance. "
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "./support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "./support/helpers.php"
+        ]
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    },
+    "require-dev": {
+        "robmorgan/phinx": "^0.12.5",
+        "phpunit/phpunit": "^9.5",
+        "object-calisthenics/phpcs-calisthenics-rules": "^3.9",
+        "squizlabs/php_codesniffer": "^3.5"
+    }
+}
