@@ -70,7 +70,8 @@ Um serviço que funciona em uma thread a parte é o de envio de emails que está
  - Um usuário e um administrador tem as mesmas opções para fazer update em certos dados, porém, a entidade usuário faz um tipo de update, e a entidade do administrador faz outra. nesse exemplo(e em outros) o DDD ultrapassa o SOLID para manter o sistema com uma forma mais dinâmica e organizada.
  - A longo prazo isso irá economizar validações desnecessárias, tais como verificar se um usuário é um administrador antes de fazer alguma modificação, ou se o nível de acesso está correto.
 
-**O sistema não pode ser obcecado por tipos primitivos**
+**O desenvolvedor não pode ser obcecado por tipos primitivos**
+ - Um email não é uma string, uma senha ou um nome de usuário também não são simples strings. esses objetos de valor deveriam estar criados com erros(exceptions) corretas para cada tipo  
 
 
 **Entrando no TDD**
