@@ -89,6 +89,36 @@ Um serviço que funciona em uma thread a parte é o de envio de emails que está
 **O desenvolvedor não pode ser obcecado por tipos primitivos**
  - Um email não é uma string, uma senha ou um nome de usuário também não são simples strings. esses objetos de valor deveriam estar criados com erros(exceptions) e validações próprias para cada tipo de dado.
 
+## Entenda a raiz de diretórios utilizando DDD ##
+ - Todo projeto a nivel de domínio está dentro da pasta `src`
+ - Regras complexas devem estar em pastas separadas(no caso `users`), pense nela como tendo toda complexidade em volta dos usuários
+
+**Pasta src/Users/Application**
+ - O arquivo presente aqui (userServices.php) diz respeito a diferentes tipos de ações que o usuário pode tomar dentro do sistema ex:
+   - Login
+   - Register
+   - Activate
+   - Delete
+ - Todas elas são ações que a entidade pode tomar(entidade usuário) que sejam como "ações do usuário". porém não alteram os valores da própria entidade, esses métodos devem ficar dentro da mesma.
+
+**Pasta src/Users/Domain**
+ - Os arquivos na pasta de domínio são divididos entre:
+  - Uma pasta para as exceptions presentes tanto nas entidades quanto nos value objects
+  - Uma pasta para os value objects(evitando o uso constante de tipos primitivos)
+  - As regras utilizadas como no banco de dados devem estar presentes aqui na forma de uma interface, que deve ser implementada para TODOS os tipos de bancos de dados que venham a ser utilizados no sistema, não fazendo necessária a alteração na entidade de usuários(por exemplo)
+  - O arquivo handler(e outros que venham a aparecer) contem os métodos que a entidade usuário pode usar para "se representar" dentro do sistema.
+
+**Pasta src/Users/Infrastructure**
+ - Aqui ficam todas as partes implementadas pelas interfaces dentro do sistema.
+ - No caso, para o repository(alterações no banco de dados) usamos o Illuminate(por isso RepositoryIlluminate)
+ - O JWT tem sua interface levemente mais complexa, por isso tem uma pasta separada para configurações.
+ - O PHPMailer(também implementado no domínio) utilizado no sistema, também poderia ser substituido por qualquer outro mail sender que pudesse ser implementado na mesma interface.
+
+**Pasta src/Users/Presentation**
+ - Os templates de email(de emails para os usuários) ficam aqui dentro também, já que pertencem exclusivamente a esse domínio.
+ - O authentication e administration são uma forma de interface do sistema(no caso acesso via http como uma API), e sua unica função é direcionar os dados para o domínio que, pode ser acessado via CLI também.
+
+**Por se tratar de um assunto extremamente complexo e longo, os domínios aplicados aqui podem servir para consulta, mas não como guia para a sua aplicação, a única intenção desse repositório é despertar sua curiosidade sobre a importância do DDD**
 
 **Entrando no TDD**
  - Seu sistema deve poder ser utilizado via CLI ou qualquer outro tipo de saida/entrada de dados e ser completamente independente da interface utilizada. (a interface web é apenas um dos possíveis métodos de utilização).
