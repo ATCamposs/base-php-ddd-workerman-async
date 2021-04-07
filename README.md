@@ -36,6 +36,11 @@ Além de mais rápido que o swoole, não necessita de libs externas, porém o po
  - mariadb/mysql
  - **Configurar o .env**
 
+**configurações importantes do .env**
+SERVER_PROCESS_COUNT= numero de processos(geralmente o dobro de nucleos do processador)
+MAIL_PROCESS_COUNT= numero de processos para o servidor de email, pode ser somente 1, caso haja muita carga pode dividir a quantidade de processos com o server_process_count
+
+
 Para instalar o sistema rodar o comando `composer install`.
 
 Para adicionar as tabelas ao banco de dados rodar o comando `vendor/bin/phinx migrate`.
