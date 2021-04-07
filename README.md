@@ -37,7 +37,9 @@ Além de mais rápido que o swoole, não necessita de libs externas, porém o po
  - **Configurar o .env**
 
 **configurações importantes do .env**
+
 SERVER_PROCESS_COUNT= numero de processos(geralmente o dobro de nucleos do processador)
+
 MAIL_PROCESS_COUNT= numero de processos para o servidor de email, pode ser somente 1, caso haja muita carga pode dividir a quantidade de processos com o server_process_count
 
 
@@ -48,6 +50,15 @@ Para adicionar as tabelas ao banco de dados rodar o comando `vendor/bin/phinx mi
 Para executar os testes é só rodar o comando `vendor/bin/phpunit` na pasta raiz.
 
 **Para verificar todas as mensagens da API traduzidas deixar o `APP_DEBUG=false` no .env**
+
+**Como iniciar o projeto**
+
+`php start.php start`
+
+o código é atualizado automaticamente pelo reloader, logo mesmo ficando armazenado na memória você não precisa parar o processo e iniciar novamente a cada mudança no código.
+
+para parar o processo você pode apertar as teclas crtl+c no terminal ou enviar o comando `php start.php stop` em outro terminal.
+
 
 ### Resumo do escalonamento horizontal ###
 Ao usar um sistema assincrono com o PHP temos uma quantidade de requisições que chega mais próxima a linguagens compiladas como o Go/rust. Porém em frameworks fullStack esse aumento de velocidade é grandemente reduzido e se torna inviável.
@@ -108,3 +119,5 @@ Um serviço que funciona em uma thread a parte é o de envio de emails que está
  - No Getters/Setters/Properties (sem getters/setters)
    - Você não deve alterar as propriedades da sua classe simplesmente setando outros valores a ela sem motivo, logo as propriedades de set devem ser pensadas para continuarem dando coerencia e funcionalidade a classe, sem ferir os princípios do SOLID.
    - Basicamente: você não deve poder alterar os valores de sua classe sem motivo, apesar de "fácil" esse é um dos principais motivos das entidades estarem anêmicas a longo prazo.
+
+### Este projeto é um exemplo e estará em constante crescimento. a qualquer dúvida/sugestão/melhoria, sinta-se livre para abrir uma issue/PR ###
