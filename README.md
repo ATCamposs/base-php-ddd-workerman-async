@@ -88,12 +88,18 @@ Um serviço que funciona em uma thread a parte é o de envio de emails que está
    - Você deve manter seu código simples, se ele precisa de mais um nível de identação, provavelmente você poderia por uma parte desse código dentro de um método diferente(dificilmente métodos com mais de um nivel de identação(no máximo 2) seguem as regras do SOLID).
  - Don’t Use The ELSE Keyword (não use else)
    - Utilizar else dentro do código geralmente está tratando 2 tipos diferentes de resultados, isso não deveria ocorrer ao seguir o principio de "falhar primeiro"(https://martinfowler.com/ieeeSoftware/failFast.pdf)
- - Wrap All Primitives And Strings(envolva todos os tipos primitivos e strings)
+ - Wrap All Primitives And Strings (envolva todos os tipos primitivos e strings)
    - Essa regra já é utilizada dentro do DDD, você deve encapsular valores dentro de objetos de valor dentro do seu domínio, um exemplo disso são cpf, email, senha, todos são valores específicos que enriquecem seus domínios e não devem ser tratados como tipos primitívos.
  - First Class Collections (coleções de primeira classe)
    - Objetos de coleção(iteráveis) devem ter uma classe iterável a parte, e não devem ser tratadas como arrays/objetos avulsos.
- - One Dot Per Line
- - Don’t Abbreviate
- - Keep All Entities Small
- - No Classes With More Than Two Instance Variables
- - No Getters/Setters/Properties
+ - One Dot Per Line (um ponto por linha)
+   - Essa regra diz que você não deve encadear métodos, a não ser que esteja usando o padrão Method Chaining Pattern.
+ - Don’t Abbreviate (não abrevie)
+   - Não abrevie nomes de métodos/classes ou objetos, novamente: se o nome de um método(por exemplo) é muito grande, provavelmente ele não está seguindo o SOLID e está fazendo mais de uma função dentro da classe.
+ - Keep All Entities Small (mantenha todas as entidades pequenas)
+   - Outra regra que segue os princípios do DDD, se uma classe tem muitos métodos, provavelmente ela poderia ser dividida em outras classes menores e mais coesas com seu próprios contextos.
+ - No Classes With More Than Two Instance Variables (sem classes com mais de duas variáveis de instância)
+   - Mais uma regra que segue os princípios do SOLID e do DDD, se suas classes tem muitas variáveis de instância, provavelmente ela está fazendo mais do que deveria. aumentando a complexidade do código e dificultando a manutenção.
+ - No Getters/Setters/Properties (sem getters/setters)
+   - Você não deve alterar as propriedades da sua classe simplesmente setando outros valores a ela sem motivo, logo as propriedades de set devem ser pensadas para continuarem dando coerencia e funcionalidade a classe, sem ferir os princípios do SOLID.
+   - Basicamente: você não deve poder alterar os valores de sua classe sem motivo, apesar de "fácil" esse é um dos principais motivos das entidades estarem anêmicas a longo prazo.
